@@ -1,0 +1,9 @@
+from glob import glob
+
+files = []
+for filename in glob("**/*.cpp", recursive=True):
+    files.append(filename)
+
+env = Environment()
+env.Append(LIBS=["X11"])
+env.Program(target="exec.out", source=files)
