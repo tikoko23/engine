@@ -11,7 +11,7 @@ using namespace Engine;
 
 int main()
 {
-    Core::init_window();
+    Core::init_window(0, 0, 800, 800, 0, 0, 0xffffffff);
     Input::start_input();
 
     Vector2 v(23, -23);
