@@ -14,6 +14,11 @@ int main()
     Core::init_window();
     Input::start_input();
 
+    Vector2 v(23, -23);
+    Vector2 v2(14, -14);
+
+    std::cout << (v + v2) << '\n';
+
     Input::key_pressed_events[Input::KEY_W].bind([](){
         Logger::log("W pressed\n");
     });

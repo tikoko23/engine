@@ -11,6 +11,7 @@ namespace Engine
         double y;
 
         Vector2(double x, double y);
+        Vector2();
 
         Vector2 operator+(const Vector2& v);
 
@@ -20,7 +21,11 @@ namespace Engine
 
         Vector2 operator/(const Vector2& v);
 
-        friend std::ostream& operator<<(std::ostream& os, const Vector2& v);
+        friend std::ostream& operator<<(std::ostream& os, const Vector2& v)
+        {
+            os << "(" << v.x << ", " << v.y << ")";
+            return os;
+        }
     };
 }
 
