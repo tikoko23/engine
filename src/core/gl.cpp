@@ -5,6 +5,7 @@
 #include <GL/glx.h>
 
 #include "window.hpp"
+#include "time.hpp"
 #include "../util/logger.hpp"
 
 namespace Engine
@@ -35,6 +36,43 @@ namespace Engine
             gl_info_text << "GL Shading Language: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << '\n';
 
             Logger::log_gl(gl_info_text.str(), false);
+        }
+
+        void draw_gl()
+        {
+            auto start_time = hr_clock.now();
+
+            glClear(GL_COLOR_BUFFER_BIT);
+
+            glBegin(GL_TRIANGLES);
+            
+            glColor3f(  1.0f,  0.0f, 0.0f);
+            glVertex3f(-1.0f, -1.0f, 0.0f);
+            glColor3f(  0.0f,  1.0f, 0.0f);
+            glVertex3f(-1.0f,  1.0f, 0.0f);
+            glColor3f(  0.0f,  0.0f, 1.0f);
+            glVertex3f( 1.0f,  1.0f, 0.0f);
+
+            glColor3f(  1.0f,  0.0f, 0.0f);
+            glVertex3f(-1.0f, -1.0f, 0.0f);
+            glColor3f(  0.0f,  0.0f, 1.0f);
+            glVertex3f( 1.0f,  1.0f, 0.0f);
+            glColor3f(  1.0f,  1.0f, 1.0f);
+            glVertex3f( 1.0f, -1.0f, 0.0f);
+
+            glEnd();
+
+            glXSwapBuffers(current_display, active_window);
+
+            auto duration = hr_clock.now() - start_time;
+            delta_time = std::chrono::duration<double>(duration).count();
+        }
+
+        void end_opengl()
+        {
+            glXDestroyContext(current_display, gl_context);
+            XFree(visual_info);
+            XFreeColormap(current_display, gl_colormap);
         }
     }
 }

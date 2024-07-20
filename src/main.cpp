@@ -3,6 +3,7 @@
 
 #include "util/logger.hpp"
 #include "core/gl.hpp"
+#include "core/time.hpp"
 #include "core/event.hpp"
 #include "core/window.hpp"
 #include "types/vector2.hpp"
@@ -22,12 +23,15 @@ int main()
     });
 
     std::atexit([](){
+        Core::end_opengl();
         Core::end_window();
     });
 
     while (true)
     {
         auto keycodes = Input::check_input();
+        Core::draw_gl();
+        Logger::log(std::to_string(Core::get_fps()) + '\n');
     }
 
     return 0;

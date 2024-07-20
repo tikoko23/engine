@@ -14,6 +14,7 @@ namespace Engine
         inline Display *current_display = XOpenDisplay(NULL);
         inline Window active_window = None;
         inline XVisualInfo* visual_info = None;
+        inline Colormap gl_colormap = None;
 
         void init_window(
             int pos_x = 0, int pos_y = 0,
@@ -56,6 +57,8 @@ namespace Engine
             attribs.override_redirect = true,
             attribs.colormap = XCreateColormap(current_display, root_window, visual_info->visual, AllocNone);
             attribs.event_mask = ExposureMask;
+
+            gl_colormap = attribs.colormap;
 
             active_window = XCreateWindow(
                 current_display, root_window,

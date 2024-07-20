@@ -10,6 +10,10 @@ namespace Engine
         inline GLXContext gl_context;
 
         void init_opengl();
+
+        void draw_gl();
+
+        void end_opengl();
     }
 }
 

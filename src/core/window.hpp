@@ -11,6 +11,7 @@ namespace Engine
         inline Display *current_display;
         inline Window active_window;
         inline XVisualInfo* visual_info;
+        inline Colormap gl_colormap;
 
         void init_window(
             int pos_x = 0, int pos_y = 0,
