@@ -19,6 +19,16 @@ namespace Engine
             std::cout << "\x1b[38;5;75m" << severity << message << "\x1b[0m";
         }
 
+        void log_gl(std::string message, bool severity_stamp = true)
+        {
+            std::string severity = "";
+
+            if (severity_stamp)
+                severity = "GL: ";
+
+            std::cout << "\x1b[38;5;157m" << severity << message << "\x1b[0m";
+        }
+
         void warn(std::string message, bool severity_stamp = true)
         {
             std::string severity = "";

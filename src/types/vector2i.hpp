@@ -2,6 +2,7 @@
 #define _VECTOR2I_HPP
 
 #include <iostream>
+#include <cmath>
 
 namespace Engine
 {
@@ -26,6 +27,10 @@ namespace Engine
             os << "(" << v.x << ", " << v.y << ")";
             return os;
         }
+
+        double magnitude();
+
+        double magnitude_sqr();
     };
 }
 

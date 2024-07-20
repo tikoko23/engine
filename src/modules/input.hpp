@@ -22,7 +22,7 @@ namespace Engine
         inline std::unordered_map<KeyboardKeys, Core::Event> key_released_events;
         inline std::unordered_map<KeyboardKeys, bool> key_down;
 
-        std::vector<std::pair<uint32_t, int>> check_key_input();
+        std::vector<std::pair<uint32_t, int>> check_input();
     }
 }
 

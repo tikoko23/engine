@@ -38,6 +38,16 @@ namespace Engine
     {
         return Vector2i(this->x / v.x, this->y / v.y);
     }
+
+    double Vector2i::magnitude()
+    {
+        return std::sqrt(this->x * this->x + this->y * this->y);
+    }
+
+    double Vector2i::magnitude_sqr()
+    {
+        return this->x * this->x + this->y * this->y;
+    }
 }
 
 #endif

@@ -2,6 +2,7 @@
 #define _VECTOR2_CPP
 
 #include <iostream>
+#include <cmath>
 
 #include "vector2.hpp"
 
@@ -37,6 +38,16 @@ namespace Engine
     Vector2 Vector2::operator/(const Vector2& v)
     {
         return Vector2(this->x / v.x, this->y / v.y);
+    }
+
+    double Vector2::magnitude()
+    {
+        return std::sqrt(this->x * this->x + this->y * this->y);
+    }
+
+    double Vector2::magnitude_sqr()
+    {
+        return this->x * this->x + this->y * this->y;
     }
 }
 

@@ -1,6 +1,8 @@
 #include <iostream>
+#include <cstdlib>
 
 #include "util/logger.hpp"
+#include "core/gl.hpp"
 #include "core/event.hpp"
 #include "core/window.hpp"
 #include "types/vector2.hpp"
@@ -11,21 +13,21 @@ using namespace Engine;
 
 int main()
 {
-    Core::init_window(0, 0, 800, 800, 0, 0, 0xffffffff);
+    Core::init_window(0, 0, 800, 800, 0);
+    Core::init_opengl();
     Input::start_input();
-
-    Vector2 v(23, -23);
-    Vector2 v2(14, -14);
-
-    std::cout << (v + v2) << '\n';
 
     Input::key_pressed_events[Input::KEY_W].bind([](){
         Logger::log("W pressed\n");
     });
 
-    while (1)
+    std::atexit([](){
+        Core::end_window();
+    });
+
+    while (true)
     {
-        auto keycodes = Input::check_key_input();
+        auto keycodes = Input::check_input();
     }
 
     return 0;

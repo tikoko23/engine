@@ -26,6 +26,10 @@ namespace Engine
             os << "(" << v.x << ", " << v.y << ")";
             return os;
         }
+
+        double magnitude();
+
+        double magnitude_sqr();
     };
 }
 

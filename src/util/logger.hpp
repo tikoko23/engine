@@ -10,6 +10,8 @@ namespace Engine
     {
         void log(std::string message, bool severity_stamp = true);
 
+        void log_gl(std::string message, bool severity_stamp = true);
+
         void warn(std::string message, bool severity_stamp = true);
 
         void error(std::string message, bool severity_stamp = true);
