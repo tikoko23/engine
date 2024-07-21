@@ -13,7 +13,7 @@ namespace Engine
             Vector3 position;
             Vector3 rotation;
 
-            virtual void draw()
+            virtual void draw(int draw_type)
             {
                 Logger::warn("Render::Drawable is a base class. Override the draw method on the inherited object\n");
             }

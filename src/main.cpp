@@ -33,11 +33,15 @@ int main()
 
     Core::drawables.push_back(cube);
     cube->position = Vector3(0, -200, 0);
+    cube->size = Vector3(100, 100, 100);
 
     while (true)
     {
         auto keycodes = Input::check_input();
         cube->position = cube->position + Vector3(0, 20 * Core::delta_time, 0).to_const();
+        cube->rotation.x += Core::delta_time * Math::deg_to_rad * 23;
+        cube->rotation.y += Core::delta_time * Math::deg_to_rad * 23;
+        cube->rotation.z += Core::delta_time * Math::deg_to_rad * 23;
         Core::draw_gl();
     }
 

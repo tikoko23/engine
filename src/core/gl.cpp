@@ -48,13 +48,13 @@ namespace Engine
 
             glClear(GL_COLOR_BUFFER_BIT);
 
-            glBegin(GL_POINTS);
+            glBegin(GL_LINES);
 
             glColor3f(1, 1, 1);
 
             for (auto& obj : Core::drawables)
             {
-                obj->draw();
+                obj->draw(GL_LINES);
             }
             
             glEnd();
