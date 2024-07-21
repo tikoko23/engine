@@ -5,7 +5,7 @@
 #include <GL/glx.h>
 
 #include "../util/logger.hpp"
-#include "../types/vector2i.hpp"
+#include "../types/vector2.hpp"
 
 namespace Engine
 {
@@ -13,6 +13,7 @@ namespace Engine
     {
         inline Display *current_display = XOpenDisplay(NULL);
         inline Window active_window = None;
+        inline Vector2 window_size = Vector2(0, 0);
         inline XVisualInfo* visual_info = None;
         inline Colormap gl_colormap = None;
 
@@ -71,6 +72,8 @@ namespace Engine
                 CWBackPixel | CWColormap | CWBorderPixel | CWEventMask,
                 &attribs
             );
+
+            window_size = Vector2(size_x, size_y);
 
             Logger::assert(active_window != None, "Failed to create window\n", true, true, [](){XCloseDisplay(current_display);});
             Logger::log("Created window\n");

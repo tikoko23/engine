@@ -22,24 +22,52 @@ namespace Engine
         this->z = 0;
     }
 
-    Vector3 Vector3::operator+(const Vector3& v)
+    const Vector3 Vector3::to_const()
+    {
+        const Vector3 v(*this);
+        return v;
+    }
+
+    const Vector3 Vector3::operator+(const Vector3& v)
     {
         return Vector3(this->x + v.x, this->y + v.y, this->z + v.z);
     }
 
-    Vector3 Vector3::operator-(const Vector3& v)
+    const Vector3 Vector3::operator-(const Vector3& v)
     {
         return Vector3(this->x - v.x, this->y - v.y, this->z - v.z);
     }
 
-    Vector3 Vector3::operator*(const Vector3& v)
+    const Vector3 Vector3::operator*(const Vector3& v)
     {
         return Vector3(this->x * v.x, this->y * v.y, this->z * v.z);
     }
 
-    Vector3 Vector3::operator/(const Vector3& v)
+    const Vector3 Vector3::operator*(const double& d)
+    {
+        return Vector3(this->x * d, this->y * d, this->z * d);
+    }
+
+    const Vector3 Vector3::operator/(const Vector3& v)
     {
         return Vector3(this->x / v.x, this->y / v.y, this->z / v.z);
+    }
+
+    bool Vector3::operator<(const Vector3& _v)
+    {
+        Vector3 v(_v);
+        return this->magnitude_sqr() < v.magnitude_sqr();
+    }
+        
+    bool Vector3::operator>(const Vector3& _v)
+    {
+        Vector3 v(_v);
+        return this->magnitude_sqr() > v.magnitude_sqr();
+    }
+
+    bool Vector3::operator==(const Vector3& v)
+    {
+        return (this->x == v.x && this->y == v.y && this->z == v.z);
     }
 
     double Vector3::magnitude()

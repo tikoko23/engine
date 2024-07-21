@@ -6,6 +6,8 @@
 #include "core/time.hpp"
 #include "core/event.hpp"
 #include "core/window.hpp"
+#include "core/objects.hpp"
+#include "render/cube.hpp"
 #include "types/vector2.hpp"
 #include "modules/input.hpp"
 #include "def/keycodes.hpp"
@@ -27,11 +29,16 @@ int main()
         Core::end_window();
     });
 
+    auto cube = std::make_shared<Render::Cube>();
+
+    Core::drawables.push_back(cube);
+    cube->position = Vector3(0, -200, 0);
+
     while (true)
     {
         auto keycodes = Input::check_input();
+        cube->position = cube->position + Vector3(0, 20 * Core::delta_time, 0).to_const();
         Core::draw_gl();
-        Logger::log(std::to_string(Core::get_fps()) + '\n');
     }
 
     return 0;

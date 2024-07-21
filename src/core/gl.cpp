@@ -6,7 +6,11 @@
 
 #include "window.hpp"
 #include "time.hpp"
+#include "../render/cube.hpp"
+#include "objects.hpp"
+#include "../util/vmath.hpp"
 #include "../util/logger.hpp"
+#include "../types/vector3.hpp"
 
 namespace Engine
 {
@@ -44,22 +48,15 @@ namespace Engine
 
             glClear(GL_COLOR_BUFFER_BIT);
 
-            glBegin(GL_TRIANGLES);
+            glBegin(GL_POINTS);
+
+            glColor3f(1, 1, 1);
+
+            for (auto& obj : Core::drawables)
+            {
+                obj->draw();
+            }
             
-            glColor3f(  1.0f,  0.0f, 0.0f);
-            glVertex3f(-1.0f, -1.0f, 0.0f);
-            glColor3f(  0.0f,  1.0f, 0.0f);
-            glVertex3f(-1.0f,  1.0f, 0.0f);
-            glColor3f(  0.0f,  0.0f, 1.0f);
-            glVertex3f( 1.0f,  1.0f, 0.0f);
-
-            glColor3f(  1.0f,  0.0f, 0.0f);
-            glVertex3f(-1.0f, -1.0f, 0.0f);
-            glColor3f(  0.0f,  0.0f, 1.0f);
-            glVertex3f( 1.0f,  1.0f, 0.0f);
-            glColor3f(  1.0f,  1.0f, 1.0f);
-            glVertex3f( 1.0f, -1.0f, 0.0f);
-
             glEnd();
 
             glXSwapBuffers(current_display, active_window);
@@ -70,6 +67,7 @@ namespace Engine
 
         void end_opengl()
         {
+            Logger::log("Closing OpenGL context...\n");
             glXDestroyContext(current_display, gl_context);
             XFree(visual_info);
             XFreeColormap(current_display, gl_colormap);

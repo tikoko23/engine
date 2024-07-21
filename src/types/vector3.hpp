@@ -14,17 +14,26 @@ namespace Engine
         Vector3(double x, double y, double z);
         Vector3();
 
-        Vector3 operator+(const Vector3& v);
+        const Vector3 to_const();
 
-        Vector3 operator-(const Vector3& v);
+        const Vector3 operator+(const Vector3& v);
 
-        Vector3 operator*(const Vector3& v);
+        const Vector3 operator-(const Vector3& v);
 
-        Vector3 operator/(const Vector3& v);
+        const Vector3 operator*(const Vector3& v);
+        const Vector3 operator*(const double& d);
+
+        const Vector3 operator/(const Vector3& v);
+
+        bool operator<(const Vector3& _v);
+        
+        bool operator>(const Vector3& _v);
+
+        bool operator==(const Vector3& v);
 
         friend std::ostream& operator<<(std::ostream& os, const Vector3& v)
         {
-            os << "(" << v.x << ", " << v.y << ")";
+            os << "(" << v.x << ", " << v.y << ", " << v.z << ")";
             return os;
         }
 

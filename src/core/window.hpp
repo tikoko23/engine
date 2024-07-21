@@ -4,12 +4,15 @@
 #include <X11/Xlib.h>
 #include <GL/glx.h>
 
+#include "../types/vector2.hpp"
+
 namespace Engine
 {
     namespace Core
     {
         inline Display *current_display;
         inline Window active_window;
+        inline Vector2 window_size;
         inline XVisualInfo* visual_info;
         inline Colormap gl_colormap;
 
